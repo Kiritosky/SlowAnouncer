@@ -31,7 +31,16 @@ public class WerbungCommand implements CommandExecutor {
         }
 
         if (args.length == 0) {
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&f &aBitte gebe /werbung &8(&eNachricht&8)&a ein."));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&f &aBitte gebe /werbung &8(&eNachricht&8)&a ein."));
+            return true;
+        }
+
+        if (player.hasPermission("werbung.bypass")) {
+            String message = String.join(" ", args);
+            String formattedMessage = ChatColor.translateAlternateColorCodes('&', "&f &8(&4&lWERBUNG&8) &e" + message);
+
+            Bukkit.broadcastMessage(formattedMessage);
+            Bukkit.getOnlinePlayers().forEach(p -> p.playSound(p.getLocation(), Sound.ENTITY_WITHER_SPAWN, 1.0f, 1.0f));
             return true;
         }
 
@@ -41,14 +50,14 @@ public class WerbungCommand implements CommandExecutor {
         if (cooldowns.containsKey(playerUUID)) {
             long timeLeft = cooldowns.get(playerUUID) - currentTime;
             if (timeLeft > 0) {
-                long secondsLeft = TimeUnit.MILLISECONDS.toMinutes(timeLeft);
-                player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&f &cWarte bitte " + secondsLeft + " Minuten bis zur erneuten Benutzung &f"));
+                long minutesLeft = TimeUnit.MILLISECONDS.toMinutes(timeLeft);
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&f &cWarte bitte " + minutesLeft + " Minuten bis zur erneuten Benutzung. &f"));
                 return true;
             }
         }
 
         String message = String.join(" ", args);
-        String formattedMessage = ChatColor.translateAlternateColorCodes('&', "&f &8(&4&lWERBUNG&8) &e" + message);
+        String formattedMessage = ChatColor.translateAlternateColorCodes('&', "&f &8(&4&lWERBUNG&8) &e" + message);
 
         Bukkit.broadcastMessage(formattedMessage);
         Bukkit.getOnlinePlayers().forEach(p -> p.playSound(p.getLocation(), Sound.ENTITY_WITHER_SPAWN, 1.0f, 1.0f));
@@ -57,3 +66,4 @@ public class WerbungCommand implements CommandExecutor {
         return true;
     }
 }
+

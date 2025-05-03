@@ -10,3 +10,6 @@ permissions:
   werbung.command:
     description: Erlaubt das Senden von Werbungsnachrichten.
     default: op
+  werbung.bypass:
+    description: Erlaubt das Senden von Werbungsnachrichten ohne cooldown.
+    default: op
