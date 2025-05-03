@@ -1,0 +1,12 @@
+name: SlowAnouncer
+version: 1.0
+main: plugin.slowAnouncer.SlowAnouncer
+api-version: 1.13
+commands:
+  werbung:
+    description: Sende eine Werbungsnachricht.
+    usage: /werbung <Nachricht>
+permissions:
+  werbung.command:
+    description: Erlaubt das Senden von Werbungsnachrichten.
+    default: op
