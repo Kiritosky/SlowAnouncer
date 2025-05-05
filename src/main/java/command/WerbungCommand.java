@@ -31,13 +31,13 @@ public class WerbungCommand implements CommandExecutor {
         }
 
         if (args.length == 0) {
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&f &aBitte gebe /werbung &8(&eNachricht&8)&a ein."));
+            player.sendMessage("&f &7Bitte gebe &e/werbung &8[&dNachricht&8]&7 um den Befehl richtig zu benützen &f");
             return true;
         }
 
         if (player.hasPermission("werbung.bypass")) {
             String message = String.join(" ", args);
-            String formattedMessage = ChatColor.translateAlternateColorCodes('&', "&f &8(&4&lWERBUNG&8) &e" + message);
+            String formattedMessage = ChatColor.translateAlternateColorCodes('&', "&f &8&l[&c&lWERBUNG&8&l] &e" + message);
 
             Bukkit.broadcastMessage(formattedMessage);
             Bukkit.getOnlinePlayers().forEach(p -> p.playSound(p.getLocation(), Sound.ENTITY_WITHER_SPAWN, 1.0f, 1.0f));

@@ -1,5 +1,5 @@
 name: SlowAnouncer
-version: 1.0
+version: 4.1
 main: plugin.slowAnouncer.SlowAnouncer
 api-version: 1.13
 commands:
